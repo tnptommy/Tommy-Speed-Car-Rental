@@ -3,8 +3,8 @@
 **Tommy Speed** is my project developed as part of the *Internet Programming* course.
 
 This web application simulates a real-world car rental system where users can browse, search, filter, and reserve cars easily and efficiently. The user interface is clean and modern, and most interactions are handled using AJAX for a smooth, dynamic experience without page reloads.
-<img width="1257" alt="image" src="https://github.com/user-attachments/assets/89601afe-6281-45b5-929d-9adefb848a5f" />
 
+<img width="1257" alt="image" src="https://github.com/user-attachments/assets/89601afe-6281-45b5-929d-9adefb848a5f" />
 
 The main goal of this project is to integrate various web technologies, including:
 - **HTML5 / CSS3** for the front-end structure and styling
