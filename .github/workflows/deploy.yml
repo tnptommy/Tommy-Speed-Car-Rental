@@ -1,4 +1,4 @@
-name: 🚀 Deploy PHP App to AWS EC2
+name: Deploy PHP App to AWS EC2
 
 on:
   push:
@@ -10,19 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: 🛡️ Set up SSH key
+      - name: Set up SSH key
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
 
-      - name: 📂 Copy files to EC2
+      - name: Copy files to EC2
         run: |
           rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ ubuntu@35.170.245.170:~/Tommy-Speed-Car-Rental
 
-      - name: 🚀 Deploy via SSH
+      - name: Deploy via SSH
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@35.170.245.170 << 'EOF'
             cd ~/Tommy-Speed-Car-Rental
