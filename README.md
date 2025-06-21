@@ -85,13 +85,15 @@ CAR-RENTAL-SYSTEM/
 ### Requirements
 
 - PHP 7.4+  
-- Local server like XAMPP/WAMP or cloud (AWS Elastic Beanstalk works great)
+- Docker (for deployment)  
+- AWS EC2 (for hosting)
 
 ### Local Setup
 
-1. Place the folder in your local server’s root (e.g., `htdocs`).
-2. Open your browser and go to `localhost/CAR-RENTAL-SYSTEM/index.php`.
-3. Make sure `data/` is writable for saving orders/user data.
+1. Clone the repository.
+2. Place the folder in your local server’s root (e.g., `htdocs`).
+3. Open your browser and go to `localhost/CAR-RENTAL-SYSTEM/index.php`.
+4. Make sure `data/` is writable for saving orders/user data.
 
 ---
 
@@ -114,7 +116,7 @@ CAR-RENTAL-SYSTEM/
 
 ## 👥 Credits
 
-Built with ❤️ by the me (Tommy).  
+Built with ❤️ by Tommy.  
 Icons and images are for demo purposes only.
 
 ---
