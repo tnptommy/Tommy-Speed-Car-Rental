@@ -1,4 +1,4 @@
-name: 🚀 Deploy to EC2 on Push to main
+name: 🚀 Deploy PHP App to AWS EC2
 
 on:
   push:
@@ -7,30 +7,35 @@ on:
 
 jobs:
   deploy:
-    name: SSH Deploy to EC2
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📦 Checkout source code
+      - name: ⬇️ Checkout repository
         uses: actions/checkout@v3
 
-      - name: 🔐 Set up SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+      - name: 🛡️ Set up SSH key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
 
-      - name: 🛡️ Add EC2 to known_hosts
+      - name: 📂 Copy files to EC2
         run: |
-          ssh-keyscan -H 35.170.245.170 >> ~/.ssh/known_hosts
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ ubuntu@35.170.245.170:~/Tommy-Speed-Car-Rental
 
       - name: 🚀 Deploy via SSH
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@35.170.245.170 << 'EOF'
             cd ~/Tommy-Speed-Car-Rental
-            git pull origin main
+            git pull origin main || true
+
+            # Stop and remove any old container
             docker stop speedcar_web || true
             docker rm speedcar_web || true
+
+            # Kill any process using port 80
+            sudo fuser -k 80/tcp || true
+
+            # Build and deploy
             docker build -t speedcar .
             docker run -d --name speedcar_web -p 80:80 speedcar
           EOF
