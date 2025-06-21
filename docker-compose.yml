@@ -2,7 +2,12 @@ version: '3.8'
 
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "80:80"
     container_name: speedcar_web
+    restart: always
+    volumes:
+      - .:/var/www/html
