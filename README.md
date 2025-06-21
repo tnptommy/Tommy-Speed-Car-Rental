@@ -105,7 +105,7 @@ CAR-RENTAL-SYSTEM/
 
 ## 👥 Credits
 
-Built with ❤️ by the me (Tommmy) team.  
+Built with ❤️ by the me (Tommy).  
 Icons and images are for demo purposes only.
 
 ---
