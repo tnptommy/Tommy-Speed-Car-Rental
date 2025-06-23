@@ -5,7 +5,7 @@
 
 This web application simulates a real-world car rental system where users can browse, search, filter, and reserve cars easily and efficiently. The user interface is clean and modern, and most interactions are handled using AJAX for a smooth, dynamic experience without page reloads.
 
-🌐 **Live Demo:** [https://tommyspeedbrand.store](https://tommyspeedbrand.store)  
+🌐 **Live Demo:** [https://tommyspeedbrand.store](https://tommyspeedcar.com/) 
 🐳 **Deployment:** Docker container running on an Ubuntu EC2 instance (AWS)
 
 <img width="1257" alt="image" src="https://github.com/user-attachments/assets/89601afe-6281-45b5-929d-9adefb848a5f" />
