@@ -20,11 +20,11 @@ jobs:
 
       - name: Copy files to EC2
         run: |
-          rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ ubuntu@35.170.245.170:~/Tommy-Speed-Car-Rental
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ ubuntu@54.80.216.183:~/Tommy-Speed-Car-Rental
 
       - name: Deploy via SSH
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@35.170.245.170 << 'EOF'
+          ssh -o StrictHostKeyChecking=no ubuntu@54.80.216.183 << 'EOF'
             cd ~/Tommy-Speed-Car-Rental
             git pull origin main || true
 
