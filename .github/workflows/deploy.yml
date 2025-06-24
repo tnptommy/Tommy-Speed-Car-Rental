@@ -18,25 +18,17 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
 
-      - name: Copy files to EC2
-        run: |
-          rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ ubuntu@54.80.216.183:~/Tommy-Speed-Car-Rental
-
       - name: Deploy via SSH
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@54.80.216.183 << 'EOF'
-            cd ~/Tommy-Speed-Car-Rental
+            set -e
+            cd ~/Tommy-Speed-Car-Rental || { mkdir -p ~/Tommy-Speed-Car-Rental && cd ~/Tommy-Speed-Car-Rental; }
             git pull origin main || true
-
-            # Stop and remove any old container
-            docker stop speedcar_web || true
-            docker rm speedcar_web || true
-
-            # Kill any process using port 80
+            docker rm -f speedcar_web || true
             sudo fuser -k 80/tcp || true
-
-            # Build and deploy
             docker build -t speedcar .
-            docker run -d --name speedcar_web -p 80:80 speedcar
+            docker run -d --name speedcar_web -p 8080:80 speedcar
+            sudo systemctl reload nginx || true
           EOF
+
 
